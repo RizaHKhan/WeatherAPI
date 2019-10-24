@@ -3,7 +3,7 @@ const state = {
 }
 
 const getters = {
-    get_weatherData() {
+    get_weatherData(state) {
         return state.weatherInfo
     },
 }

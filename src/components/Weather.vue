@@ -5,7 +5,7 @@
       <h1 class="appname">Weather API</h1>
       
       <div class="search">
-        <input type="text" placeholder="Enter your zip" v-model="zipcode"><button @click.prevent='dispatchAction'>Submit</button>
+        <input type="text" placeholder="Enter your zip" v-model="zipcode"><button @click.prevent='act_postalcode(zipcode)'>Submit</button>
       </div>
 
       <div class="weather-meta" v-if="get_weatherData">
@@ -30,32 +30,24 @@
 </template>
 
 <script>
-import {mapGetters, mapActions, mapState} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   data() {
     return {
       zipcode: null,
-      emptyData: null
     }
   },
   computed: {
     ...mapGetters([
       'get_weatherData'
     ]),
-    ...mapState([
-      'weatherInfo'
-    ])
-    
   },
   methods: {
     ...mapActions([
       'act_postalcode'
     ]),
-    dispatchAction() {
-      this.$store.state.weaterInfo = ''
-      this.$store.dispatch('act_postalcode', this.zipcode)
-    }
+    
   },
 }
 </script>
